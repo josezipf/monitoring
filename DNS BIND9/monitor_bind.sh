@@ -52,7 +52,7 @@
 #
 # Nota: Antes de usar este script, certifique-se de que os pacotes dnsutils, curl, e xml2 estejam instalados em seu sistema.
 # Se esses pacotes não estiverem instalados, você pode instalá-los com o comando:
-
+# Atualizado
 
 
 # Inicia as chaves desativadas
