@@ -138,13 +138,17 @@ bind_queries_query=0
     test "$valida" = 1 && { dig +time=1 +tries=2 @$2 $3 | grep NOERROR >/dev/null && echo 1 || echo 0;}
 
     # Conectar no DNS para trazer as informações de estatísticas e envia para arquivo com o nome do host DNS
-    test "$executa" = 1 && { curl -s http://$2:$3/ | xml2 > /tmp/bind.temp.stats.$2 && cp /tmp/bind.temp.stats.$2 /tmp/bind.stats.$2 && echo 1 || echo 0; }
+    test "$executa" = 1 && { curl -s http://$2:$3/ | xml2 > /tmp/bind.temp.stats.$2 && cp /tmp/bind.temp.stats.$2 /tmp/bind.stats.$2 \
+    && echo 1 || echo 0; }
 
     # Consulta de Query in
-    test "$bind_queries_in" = 1 && { in=$(grep -A1 "/statistics/server/counters/counter/@name=$3$" /tmp/bind.stats.$2) && in=$(echo "$in" | tail -1 | cut -d= -f2) || in=0; echo "$in"; }
+    test "$bind_queries_in" = 1 && { in=$(grep -A1 "/statistics/server/counters/counter/@name=$3$" /tmp/bind.stats.$2) \
+    && in=$(echo "$in" | tail -1 | cut -d= -f2) || in=0; echo "$in"; }
 
     # Consulta de Query Out
-    test "$bind_queries_out" = 1 && { out=$(grep -A1 "/statistics/views/view/counters/counter/@name=$3$" /tmp/bind.stats.$2) && out=$(echo "$out" | tail -1 | cut -d= -f2) || out=0; echo "$out"; }
+    test "$bind_queries_out" = 1 && { out=$(grep -A1 "/statistics/views/view/counters/counter/@name=$3$" /tmp/bind.stats.$2) \
+    && out=$(echo "$out" | tail -1 | cut -d= -f2) || out=0; echo "$out"; }
 
     # Consulta de Query de Status
-    test "$bind_queries_query" = 1 && { query=$(grep -A1 "/statistics/server/counters/counter/@name=Qry$3$" /tmp/bind.stats.$2) && query=$(echo "$query" | tail -1 | cut -d= -f2) || query=0; echo "$query"; }
+    test "$bind_queries_query" = 1 && { query=$(grep -A1 "/statistics/server/counters/counter/@name=Qry$3$" /tmp/bind.stats.$2) \
+    && query=$(echo "$query" | tail -1 | cut -d= -f2) || query=0; echo "$query"; }
