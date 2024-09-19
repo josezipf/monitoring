@@ -1,0 +1,758 @@
+zabbix_export:
+  version: '6.0'
+  date: '2024-09-19T19:46:00Z'
+  groups:
+    -
+      uuid: da54d606965e42eba204f1daa0f539ad
+      name: Templates
+  templates:
+    -
+      uuid: 34961696ce734fd7b7d3d9c3c15df76e
+      template: 'Template -Bind9'
+      name: 'Template -Bind9'
+      groups:
+        -
+          name: Templates
+      items:
+        -
+          uuid: 84157da81da746b2b8d24d7c4a8c4c10
+          name: 'Bind Queries in Type (AAAA)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},AAAA]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: da3c73819e3142ab821c79cc6219dd66
+          name: 'Bind Queries in Type (ANY)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},ANY]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: 1f83d36ba6ee488fa0b289f9086ec877
+          name: 'Bind Queries in Type (A)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},A]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: 4a371412ab064a9ea887e94add812399
+          name: 'Bind Queries in Type (CNAME)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},CNAME]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: 58551e7dccee42b6885f07a3b0763469
+          name: 'Bind Queries in Type (DNSKEY)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},DNSKEY]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: 3230e5533dd14241acc5c89273d188a2
+          name: 'Bind Queries in Type (DS)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},DS]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: 65bc147464c945ceb2adfc6b72fb01cb
+          name: 'Bind Queries in Type (MX)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},MX]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: b93a5aaf63894038a90bccb242a335fd
+          name: 'Bind Queries in Type (NS)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},NS]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: 9c328e61778342c196ea72c0839e60ee
+          name: 'Bind Queries in Type (PTR)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},PTR]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: adc1d727a127488ea9118b74fa2a3e5a
+          name: 'Bind Queries in Type (RRSIG)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},RRSIG]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: 17f89069d85e4eba8a932fdbbe87489e
+          name: 'Bind Queries in Type (SOA)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},SOA]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: 26569e23a7f64d0aa917495ff2e8e8c9
+          name: 'Bind Queries in Type (SPF)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},SPF]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: a6ee67567d0348e9ac43637c92d0fa72
+          name: 'Bind Queries in Type (TXT)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_in,{HOST.CONN},TXT]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: CHECK_NOT_SUPPORTED
+              parameters:
+                - ''
+              error_handler: CUSTOM_ERROR
+              error_handler_params: '0'
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: IN
+        -
+          uuid: 7f9873b03b5e4908a23a575d4f85f4bc
+          name: 'Bind Queries out Type (AAAA)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},AAAA]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: 6ebc318737de4726b47a9aec7f328565
+          name: 'Bind Queries out Type (ANY)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},ANY]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: 0c952d34013e4a9686656dd01e26e8b2
+          name: 'Bind Queries out Type (A)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},A]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: 1ffd4dca172046b886528315a7b0aab4
+          name: 'Bind Queries out Type (CNAME)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},CNAME]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: 26ea1e50565240b395eab7780cf9ea8f
+          name: 'Bind Queries out Type (DNSKEY)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},DNSKEY]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: ebf4fe6c79004b6fb66b6ac88b631628
+          name: 'Bind Queries out Type (DS)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},DS]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: 5cf73b7d027d4fd7a493d69bc3fcfb79
+          name: 'Bind Queries out Type (MX)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},MX]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: b6265d78d4b9458d9f9b5639289f44b7
+          name: 'Bind Queries out Type (NS)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},NS]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: 92ffbd2179694f7cb90c73bf4e5c019e
+          name: 'Bind Queries out Type (PTR)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},PTR]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: bb10af26e3fa466580e9e0f15f804665
+          name: 'Bind Queries out Type (RRSIG)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},RRSIG]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: c9734c01b3d84a7bb0ec7622f177f4ec
+          name: 'Bind Queries out Type (SOA)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},SOA]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: 7db97929b5ec4ff6ac44043c823cca1d
+          name: 'Bind Queries out Type (SPF)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},SPF]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: 339ccc38bd6c4f2091ce720474ce4a5e
+          name: 'Bind Queries out Type (TXT)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_out,{HOST.CONN},TXT]'
+          delay: 2m
+          history: 7d
+          value_type: FLOAT
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: OUT
+        -
+          uuid: d212172b63cf48d3af47559f37f19696
+          name: 'Resolver Queries (AuthAns)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},AuthAns]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 7ad45a4749de4f3688e52ad663670e14
+          name: 'Resolver Queries (Dropped)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},Dropped]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: b24fe96fc71b4796ba69832e1313968b
+          name: 'Resolver Queries (Duplicate)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},Duplicate]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 123805b4e5444903ad5027fad8dbaa04
+          name: 'Resolver Queries (Failure)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},Failure]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 5068db5ebced4dc5beeed0bf4f385c14
+          name: 'Resolver Queries (FORMERR)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},FORMERR]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 1d6835351abc477aafa08ef05c7434ca
+          name: 'Resolver Queries (NoauthAns)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},NoauthAns]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 607c0c61ea75499ab378b8ae914a2d4e
+          name: 'Resolver Queries (NXDOMAIN)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},NXDOMAIN]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 004e835a7736409c8ca2641f5c512c41
+          name: 'Resolver Queries (Nxrrset)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},Nxrrset]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 89aad1f3c7f34b9b972ec4953dd84937
+          name: 'Resolver Queries (Recursion)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},Recursion]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 4133156a2e154fc4b7d84142612ad757
+          name: 'Resolver Queries (Referral)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},Referral]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 3ae0b4ce8b2c431382b83e285c76cb86
+          name: 'Resolver Queries (SERVFAIL)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},SERVFAIL]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: 23a5f05b63d24f6a88b6ca42dbfacee4
+          name: 'Resolver Queries (Success)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-bind_queries_query,{HOST.CONN},Success]'
+          delay: 2m
+          history: 7d
+          preprocessing:
+            -
+              type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            -
+              tag: DNS
+              value: QUERY
+        -
+          uuid: f3f8d0e6880c4597af89543fec8764f7
+          name: 'Get Info (Bind9)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-executa,{HOST.CONN},8053]'
+          delay: '90'
+          history: 1d
+          trends: '0'
+          tags:
+            -
+              tag: DNS
+              value: GET
+        -
+          uuid: 841a6485da604dbe8736fde29dde4b46
+          name: 'Check DNS resolution (google.com)'
+          type: EXTERNAL
+          key: 'monitor_bind.sh[-valida,{HOST.CONN},google.com]'
+          delay: '90'
+          history: 2d
+          trends: '0'
+          tags:
+            -
+              tag: DNS
+              value: CHECK
+          triggers:
+            -
+              uuid: b32a1c94e3ce45818160cbd1ed51190b
+              expression: 'sum(/Template -Bind9/monitor_bind.sh[-valida,{HOST.CONN},google.com],5m)=0'
+              name: 'DNS Fail resolution google.com.'
+              priority: DISASTER
