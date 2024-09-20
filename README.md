@@ -34,11 +34,13 @@ Configuração:
 
 1. Configuração do Bind 9:
 
-Para permitir que o script acesse as estatísticas do Bind 9, adicione a seguinte configuração ao seu arquivo /etc/bind/named.conf.options:
+Para permitir que o script acesse as estatísticas do Bind 9, adicione a seguinte configuração ao seu arquivo `/etc/bind/named.conf.options`:
 
+```bash
 statistics-channels {
     inet 0.0.0.0 port 8053 allow { 172.17.0.1; 127.0.0.1; };
 };
+
 
 Recarregue o serviço Bind para aplicar as alterações:
 
