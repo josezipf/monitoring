@@ -1,6 +1,7 @@
 DNS Monitoring Script for Zabbix
 
-Este repositório contém um script Bash personalizado projetado para monitorar consultas DNS usando a plataforma de monitoramento Zabbix. O script foi desenvolvido e testado para funcionar com o Zabbix 6 ou superior e Bind 9.
+Este repositório contém um script Bash personalizado projetado para monitorar consultas DNS usando a plataforma de monitoramento Zabbix. 
+O script foi desenvolvido e testado para funcionar com o Zabbix 6 ou superior e Bind 9.
 
 Recursos:
 
