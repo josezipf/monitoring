@@ -11,7 +11,7 @@ Recursos:
 - Gera arquivos temporários para tratamento eficiente de dados e desempenho.
 
 Requisitos:
-
+- SO Ubuntu Server
 - Zabbix 6 ou superior
 - Bind 9
 - Pacote dnsutils (para o comando dig)
