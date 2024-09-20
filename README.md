@@ -58,11 +58,12 @@ Uso:
 
 Execute o script com uma das seguintes opções:
 
-./monitor_bind.sh -valida 172.17.0.2 google.com.br
-./monitor_bind.sh -executa 172.17.0.2 8053
-./monitor_bind.sh -bind_queries_in 172.17.0.2 A
-./monitor_bind.sh -bind_queries_out 172.17.0.2 A
-./monitor_bind.sh -bind_queries_query 172.17.0.2 Success
+- `./monitor_bind.sh -valida 172.17.0.2 google.com.br`
+- `./monitor_bind.sh -executa 172.17.0.2 8053`
+- `./monitor_bind.sh -bind_queries_in 172.17.0.2 A`
+- `./monitor_bind.sh -bind_queries_out 172.17.0.2 A`
+- `./monitor_bind.sh -bind_queries_query 172.17.0.2 Success`
+
 
 Licença:
 
