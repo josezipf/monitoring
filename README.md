@@ -30,21 +30,35 @@ Instalação:
    sudo chmod +x /usr/lib/zabbix/externalscripts/monitor_bind.sh
    sudo chown zabbix.zabbix /usr/lib/zabbix/externalscripts/monitor_bind.sh
 
-Configuração:
+## Configuração do Bind 9
 
-1. Configuração do Bind 9:
+Para permitir que o script acesse as estatísticas do Bind 9, é necessário configurar o arquivo `named.conf.options`. Siga as instruções abaixo:
 
-Para permitir que o script acesse as estatísticas do Bind 9, adicione a seguinte configuração ao seu arquivo `/etc/bind/named.conf.options`:
+1. Abra o arquivo de configuração do Bind com o editor de texto de sua preferência:
 
-```bash
-statistics-channels {
-    inet 0.0.0.0 port 8053 allow { 172.17.0.1; 127.0.0.1; };
-};
+    ```bash
+    sudo vim /etc/bind/named.conf.options
+    ```
 
+2. Adicione o seguinte bloco de configuração para habilitar o canal de estatísticas na porta `8053` e
+3. permitir acesso aos IPs `172.17.0.1` e `127.0.0.1`. Certifique-se de ajustar os IPs conforme sua configuração de rede:
 
-Recarregue o serviço Bind para aplicar as alterações:
+    ```bash
+    statistics-channels {
+        inet 0.0.0.0 port 8053 allow { 172.17.0.1; 127.0.0.1; };
+    };
+    ```
 
-   sudo service named reload
+4. Salve e saia do editor (`Esc` + `:wq` no `vim`).
+
+5. Recarregue o serviço Bind para aplicar as alterações:
+
+    ```bash
+    sudo service named reload
+    ```
+
+Após isso, o Bind 9 estará configurado para permitir que o script monitore as estatísticas. Verifique se o script está funcionando conforme esperado.
+
 
 2. Integração com Zabbix:
 
