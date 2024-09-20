@@ -1,7 +1,8 @@
 ```markdown
 # DNS Monitoring Script for Zabbix
 
-This repository contains a custom Bash script designed for monitoring DNS queries using the Zabbix monitoring platform. The script is specifically developed and tested to work with **Zabbix 6 or higher** and **Bind 9**.
+This repository contains a custom Bash script designed for monitoring DNS queries using the Zabbix monitoring platform.
+The script is specifically developed and tested to work with **Zabbix 6 or higher** and **Bind 9**.
 
 ## Features
 
