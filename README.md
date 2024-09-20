@@ -69,7 +69,7 @@ Após isso, o Bind 9 estará configurado para permitir que o script monitore as 
 
 - Importe o template do Zabbix a partir do diretório monitoring:
   - Vá para **Configuração > Templates** na interface web do Zabbix.
-  - Clique em **Importar** e selecione o arquivo zabbix_bind_template.xml deste repositório.
+  - Clique em **Importar** e selecione o arquivo zabbix_template_bind9.yaml deste repositório.
 
 - Atribua o template ao host desejado.
 
