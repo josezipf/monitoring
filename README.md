@@ -21,15 +21,20 @@ Requisitos:
 Instalação:
 
 1. Clone este repositório no seu servidor Zabbix:
+   ```bash
    git clone https://github.com/josezipf/monitoring.git
-
-2. Copie o script para o diretório de scripts externos do Zabbix:
+   ---
+3. Copie o script para o diretório de scripts externos do Zabbix:
+   ```bash
    sudo cp monitoring/monitor_bind.sh /usr/lib/zabbix/externalscripts/
+   ---
 
-3. Defina as permissões apropriadas:
+5. Defina as permissões apropriadas:
+   ```bash
    sudo chmod +x /usr/lib/zabbix/externalscripts/monitor_bind.sh
    sudo chown zabbix.zabbix /usr/lib/zabbix/externalscripts/monitor_bind.sh
-
+   ---
+   
 ## Configuração do Bind 9
 
 Para permitir que o script acesse as estatísticas do Bind 9, é necessário configurar o arquivo `named.conf.options`. Siga as instruções abaixo:
