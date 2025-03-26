@@ -28,7 +28,7 @@ Quando configurados corretamente, você poderá usar URLs como `ssh://192.168.0.
 Para aplicar as configurações do registro, faça o seguinte:
 
 1. Baixe os arquivos de registro **`ssh.reg`** e **`winbox.reg`**.
-2. Clique com o botão direito sobre cada um dos arquivos e selecione **"Merge"** para adicioná-los ao registro do Windows.
+2. Dê **duplo clique** sobre cada um dos arquivos para adicioná-los ao registro do Windows.
    
 Isso configurará os protocolos `ssh://` e `winbox://` no seu sistema.
 
