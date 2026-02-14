@@ -1,0 +1,295 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ALEXANDERZOBNIN-ZABBIX-DATASOURCE",
+      "label": "alexanderzobnin-zabbix-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "alexanderzobnin-zabbix-datasource",
+      "pluginName": "Zabbix"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "alexanderzobnin-zabbix-datasource",
+      "name": "Zabbix",
+      "version": "6.2.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.3.1"
+    },
+    {
+      "type": "panel",
+      "id": "marcusolsson-dynamictext-panel",
+      "name": "Business Text",
+      "version": "6.2.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "${DS_ALEXANDERZOBNIN-ZABBIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "afterRender": "// 1. Ouvinte Global (Event Delegation)\ndocument.addEventListener(\"click\", function (e) {\n  const card = e.target.closest(\".card-equipamento\");\n  if (!card) return;\n\n  // Extração de dados com limpeza (converte para número para facilitar cálculos)\n  const dados = {\n    host: card.getAttribute(\"data-hostname\") || \"Link de Internet\",\n    status: card.getAttribute(\"data-status\"),\n    latencia: parseFloat(card.getAttribute(\"data-latencia\") || 0).toFixed(2),\n    perda: parseFloat(card.getAttribute(\"data-perda\") || 0).toFixed(1),\n    sla: parseFloat(card.getAttribute(\"data-disponibilidade\") || 0).toFixed(2)\n  };\n\n  criarModalTOP(dados);\n});\n\nfunction criarModalTOP(d) {\n  const antigo = document.getElementById(\"modal-livre-global\");\n  if (antigo) antigo.remove();\n\n  // --- LÓGICA DE INTELIGÊNCIA DO MODAL ---\n\n  // Cores de Status\n  const isUp = (d.status === \"1\" || d.status === \"ON\" || d.status === \"UP\");\n  const corStatus = isUp ? \"#28a745\" : \"#dc3545\";\n  const textoStatus = isUp ? \"🌐 CONECTADO\" : \"🚨 DESCONECTADO\";\n\n  // Alerta de Latência (Amarelo > 100ms, Vermelho > 250ms)\n  let corLatencia = \"#3274D9\"; // Azul padrão\n  if (d.latencia > 100) corLatencia = \"#f1c40f\";\n  if (d.latencia > 250) corLatencia = \"#e74c3c\";\n\n  // Alerta de Perda (Qualquer perda > 0 já sinaliza em laranja/vermelho)\n  const corPerda = d.perda > 0 ? \"#ff9830\" : \"#aaa\";\n\n  const modal = document.createElement(\"div\");\n  modal.id = \"modal-livre-global\";\n\n  modal.innerHTML = `\n    <div id=\"modal-header\" style=\"cursor:grab; background:#2c3235; padding:12px; color:#efefef; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444;\">\n        <span style=\"font-size: 12px; font-weight: bold; opacity: 0.7;\">📍 MONITORAMENTO PRO</span>\n        <span id=\"fecharModal\" style=\"font-size:20px; cursor:pointer; line-height:1;\">&times;</span>\n    </div>\n    \n    <div style=\"padding:25px; color:#d8d9da; background: linear-gradient(180deg, #1e1e20 0%, #18181a 100%);\">\n        <div style=\"text-align:center; margin-bottom: 25px;\">\n            <h2 style=\"margin:0; font-size: 20px; color: #fff;\">${d.host}</h2>\n            <div style=\"display:inline-block; margin-top:8px; padding:4px 12px; border-radius:20px; background: ${corStatus}22; border: 1px solid ${corStatus}; color: ${corStatus}; font-size: 11px; font-weight: bold;\">\n                ${textoStatus}\n            </div>\n        </div>\n\n        <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 15px;\">\n            <div style=\"background: #252529; padding: 15px; border-radius: 10px; border-left: 4px solid ${corLatencia};\">\n                <span style=\"font-size: 10px; color: #888; text-transform: uppercase;\">Latência</span><br>\n                <b style=\"font-size: 22px; color: ${corLatencia};\">${d.latencia} <small style=\"font-size:10px;\">ms</small></b>\n            </div>\n\n            <div style=\"background: #252529; padding: 15px; border-radius: 10px; border-left: 4px solid ${corPerda};\">\n                <span style=\"font-size: 10px; color: #888; text-transform: uppercase;\">Perda</span><br>\n                <b style=\"font-size: 22px; color: ${corPerda};\">${d.perda} <small style=\"font-size:10px;\">%</small></b>\n            </div>\n\n            <div style=\"background: #252529; padding: 15px; border-radius: 10px; grid-column: span 2; display: flex; justify-content: space-between; align-items: center;\">\n                <div>\n                   <span style=\"font-size: 10px; color: #888; text-transform: uppercase;\">Disponibilidade (SLA)</span><br>\n                   <b style=\"font-size: 24px; color: #eee;\">99.9%</b>\n                </div>\n                <div style=\"width: 50px; height: 50px; border-radius: 50%; border: 3px solid #333; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #28a745;\">\n                    OK\n                </div>\n            </div>\n        </div>\n        \n        <div style=\"margin-top: 20px; text-align: center; font-size: 10px; color: #555;\">\n            Sincronizado com Zabbix API via Token\n        </div>\n    </div>\n  `;\n\n  // Estilo da Janela\n  Object.assign(modal.style, {\n    position: \"fixed\", top: \"15%\", left: \"35%\", width: \"380px\",\n    backgroundColor: \"#1e1e20\", borderRadius: \"12px\", zIndex: \"10000\",\n    boxShadow: \"0 20px 50px rgba(0,0,0,0.8)\", border: \"1px solid #333\",\n    fontFamily: \"'Inter', sans-serif\", overflow: \"hidden\"\n  });\n\n  document.body.appendChild(modal);\n  modal.querySelector(\"#fecharModal\").onclick = () => modal.remove();\n  tornarArrastavel(modal);\n}\n\n// Motor de Arrasto Robusto\nfunction tornarArrastavel(elmnt) {\n  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;\n  const header = elmnt.querySelector(\"#modal-header\");\n  header.onmousedown = dragMouseDown;\n\n  function dragMouseDown(e) {\n    e.preventDefault();\n    pos3 = e.clientX;\n    pos4 = e.clientY;\n    document.onmouseup = closeDragElement;\n    document.onmousemove = elementDrag;\n    header.style.cursor = \"grabbing\";\n  }\n\n  function elementDrag(e) {\n    e.preventDefault();\n    pos1 = pos3 - e.clientX;\n    pos2 = pos4 - e.clientY;\n    pos3 = e.clientX;\n    pos4 = e.clientY;\n    elmnt.style.top = (elmnt.offsetTop - pos2) + \"px\";\n    elmnt.style.left = (elmnt.offsetLeft - pos1) + \"px\";\n  }\n\n  function closeDragElement() {\n    document.onmouseup = null;\n    document.onmousemove = null;\n    header.style.cursor = \"grab\";\n  }\n}",
+        "content": "<div class=\"card-equipamento\" data-hostname=\"{{Host}}\" data-status=\"{{data.[0].[0].[Last *]}}\" data-latencia=\"{{data.[0].[1].[Last *]}}\" data-perda=\"{{data.[0].[2].[Last *]}}\" data-disponibilidade=\"{{data.[0].[0].[Last *]}}\"><span class=\"luz-status\"></span><span class=\"nome-host\">{{#if (eq data.[0].[0].[Last *] 1)}}INTERNET OK{{else}}INTERNET FORA{{/if}} - {{Host}}</span></div>",
+        "contentPartials": [],
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "language": "markdown"
+        },
+        "editors": [
+          "styles",
+          "afterRender"
+        ],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "data",
+        "styles": ".card-equipamento {\n    display: inline-flex;\n    align-items: center;\n    padding: 12px 20px;\n    border-radius: 8px;\n    cursor: pointer;\n    font-weight: bold;\n    color: white;\n    margin: 5px;\n    background-color: #555555; \n    box-shadow: 0 4px 6px rgba(0,0,0,0.3);\n    transition: transform 0.2s;\n}\n\n/* 🟢 Cores baseadas no data-status que configuramos no JS */\ndiv[data-status=\"1\"] { background-color: #28a745 !important; }\ndiv[data-status=\"0\"] { background-color: #dc3545 !important; }\n\n/* A Bolinha de Status */\n.luz-status {\n    width: 12px;\n    height: 12px;\n    background-color: white;\n    border-radius: 50%;\n    margin-right: 12px;\n    position: relative;\n    display: inline-block;\n}\n\n/* Efeito de Pulso para Internet OK (apenas quando o status for 1) */\ndiv[data-status=\"1\"] .luz-status::after {\n    content: '';\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    background-color: white;\n    border-radius: 50%;\n    animation: pulsar 2s infinite;\n}\n\n@keyframes pulsar {\n    0% { transform: scale(1); opacity: 0.8; }\n    100% { transform: scale(2.5); opacity: 0; }\n}\n\n.nome-host { font-size: 14px; text-transform: uppercase; }",
+        "wrap": true
+      },
+      "pluginVersion": "6.2.0",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ALEXANDERZOBNIN-ZABBIX-DATASOURCE}"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "INTERNET"
+          },
+          "host": {
+            "filter": "LINK10"
+          },
+          "item": {
+            "filter": "Disponibilidade"
+          },
+          "itemTag": {
+            "filter": "LINK: DISPONIBILIDADE"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ALEXANDERZOBNIN-ZABBIX-DATASOURCE}"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "INTERNET"
+          },
+          "hide": false,
+          "host": {
+            "filter": "LINK10"
+          },
+          "item": {
+            "filter": "Latência"
+          },
+          "itemTag": {
+            "filter": "LINK: LATENCIA"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ALEXANDERZOBNIN-ZABBIX-DATASOURCE}"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "INTERNET"
+          },
+          "hide": false,
+          "host": {
+            "filter": "LINK10"
+          },
+          "item": {
+            "filter": "Perda de pacote"
+          },
+          "itemTag": {
+            "filter": "LINK: PERDA"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "TEST MODAL",
+  "uid": "adj6m4g",
+  "version": 17,
+  "weekStart": "",
+  "id": null
+}
